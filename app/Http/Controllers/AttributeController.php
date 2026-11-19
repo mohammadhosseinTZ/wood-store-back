@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\AttributeRepository;
+use App\Http\Requests\AttributeUpdateRequest;
 use App\Models\Attribute;
-use Illuminate\Http\Request;
 
 class AttributeController extends ApiController
 {
@@ -21,6 +21,13 @@ class AttributeController extends ApiController
     public function store(Attribute $attribute)
     {
         return $this->successResponse($this->attributeRepository->show($attribute), 200);
+    }
+    public function update(Attribute $attribute, AttributeUpdateRequest $attributeUpdateRequest)
+    {
+        return $this->successResponse(
+            $this->attributeRepository->update($attribute, $attributeUpdateRequest->validated()),
+            200
+        );
     }
     public function show(Attribute $attribute)
     {

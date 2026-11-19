@@ -24,10 +24,15 @@ class AttributeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => ["required", "string"],
-            "unit" => ["nullable", "string"],
-            "type" => ["required", "string", "in:select,text,number,boolean"],
-            "slug" => ["required", "string", Rule::exists("attributes", "slug")],
+            "name" => ["required", "string", "max:255"],
+            "unit" => ["nullable", "string", "max:50"],
+            "type" => ["required", Rule::in([
+                'select',
+                'text',
+                'number',
+                'boolean'
+            ])],
+            "slug" => ["required", "string", Rule::unique("attributes", "slug")],
         ];
     }
 }

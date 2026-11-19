@@ -25,12 +25,12 @@ class CategoryRequest extends FormRequest
     {
         return [
             "parent_id" => ["nullable", Rule::exists("categories", "id")],
-            "slug" => ["nullable", Rule::unique("categories", "slug")],
+            "slug" => ["required", Rule::unique("categories", "slug")],
             "name" => ["required", "string"],
             "description" => ["nullable", "string"],
-            "image" => ["nullable", "string"],
+            "image" => ["nullable",  'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             "is_active" => ["nullable", "boolean"],
-            "sort_order" => ["required", "integer"],
+            "sort_order" => ["nullable", "integer"],
         ];
     }
 }

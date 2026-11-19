@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::apiResource("categories", CategoryController::class);
-Route::apiResource("attributes", CategoryController::class);
+Route::apiResource("attributes", AttributeController::class);
 
 
 Route::get('/user', function (Request $request) {

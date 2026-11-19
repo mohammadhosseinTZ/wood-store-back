@@ -11,7 +11,7 @@ class CategoryRepositoryImp implements CategoryRepository
     #[Override]
     public function getAll()
     {
-        return Category::orderBy("id", "desc")->paginate(10);
+        return Category::with(['children' , 'parent'])->orderBy("id", "desc")->paginate(10);
     }
     #[Override]
     public function store(array $data)
@@ -32,5 +32,8 @@ class CategoryRepositoryImp implements CategoryRepository
     {
         $category->delete();
         return $category;
+    }
+    public function storeImage(array $data){
+        
     }
 }

@@ -9,4 +9,6 @@ interface CategoryRepository
     public function update(\App\Models\Category $Category, array $data);
     public function delete(\App\Models\Category $Category);
     public function show(\App\Models\Category $Category);
+
+    public function storeImage(array $data);
 }

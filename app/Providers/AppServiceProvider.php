@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Contracts\Interfaces\AttributeOptionsRepository;
 use App\Contracts\Interfaces\AttributeRepository;
 use App\Contracts\Interfaces\CategoryRepository;
+use App\Repository\AttributeOptionsRepositoryImp;
 use App\Repository\AttributeRepositoryImp;
 use App\Repository\CategoryRepositoryImp;
 use Illuminate\Support\ServiceProvider;
@@ -22,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             AttributeRepository::class,
             AttributeRepositoryImp::class
+        );
+        $this->app->bind(
+            AttributeOptionsRepository::class,
+            AttributeOptionsRepositoryImp::class
         );
     }
 

@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Attribute extends Model
 {
-    protected $table ="attributes";
+    protected $table = "attributes";
     protected $guarded = [];
+
+    public function options()
+    {
+        $this->hasMany(AttributeOptions::class);;
+    }
+
 }

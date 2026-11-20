@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\Interfaces\CategoryRepository;
 use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 use App\Models\Category;
 use App\Services\ImageService;
 use Illuminate\Http\Request;
@@ -38,16 +39,16 @@ class CategoryController extends ApiController
 
         return $this->successResponse($category, 201);
     }
-    public function update(CategoryRequest $categoryRequest, Category $category)
+    public function update(CategoryUpdateRequest $categoryUpdateRequest, Category $category)
     {
-        $data = $categoryRequest->validated();
+        $data = $categoryUpdateRequest->validated();
 
-        if ($categoryRequest->hasFile('image')) {
+        if ($categoryUpdateRequest->hasFile('image')) {
 
             $this->imageService->delete($category->image);
 
             $data['image'] = $this->imageService->store(
-                $categoryRequest->file('image'),
+                $categoryUpdateRequest->file('image'),
                 'images/category'
             );
         }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\AttributeOptionsController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HeroController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +15,8 @@ Route::post("/attributes/{attribute}/options", [AttributeOptionsController::clas
 Route::delete("/attributes/{attributeOptions}/options", [AttributeOptionsController::class, "destroy"]);
 
 Route::apiResource("products", ProductController::class);
+
+Route::apiResource("heroes", HeroController::class);
 
 Route::get('/user', function (Request $request) {
     return $request->user();
